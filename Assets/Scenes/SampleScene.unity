@@ -241,6 +241,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e58d9dfde93ff04a8a573b8d1ba3321, type: 3}
+--- !u!4 &1170701268 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6815491712293426588, guid: 50ca07c87247961449c82e3a6ef99dc2, type: 3}
+  m_PrefabInstance: {fileID: 368999551}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1285679272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -248,6 +253,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1486438081657708224, guid: 84c1498fd0a11aa4dab734fd6594b90c, type: 3}
+      propertyPath: CameraRig
+      value: 
+      objectReference: {fileID: 1170701268}
     - target: {fileID: 1486438081657708225, guid: 84c1498fd0a11aa4dab734fd6594b90c, type: 3}
       propertyPath: m_RootOrder
       value: 0
