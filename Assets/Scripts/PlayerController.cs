@@ -7,7 +7,11 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     [SerializeField] private GameObject Bullet;
-    public int Velocity = 5;
+    [SerializeField] private GameObject RightGun;
+    [SerializeField] private GameObject LeftGun;
+    [SerializeField] private int Velocity = 5;
+    [SerializeField] private float GunCoolingTime;
+    private float lastFireTime;
 
     void Start()
     {
@@ -42,9 +46,18 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
-        if (Input.GetButton("Fire1"))
+        if (Time.time > lastFireTime + GunCoolingTime)
         {
-            Instantiate(Bullet);
+            lastFireTime = Time.time;
+            if (Input.GetButton("Fire1"))
+            {
+                Instantiate(Bullet, LeftGun.transform.position, LeftGun.transform.rotation);
+            }
+
+            if (Input.GetButton("Fire2"))
+            {
+                Instantiate(Bullet, RightGun.transform.position, RightGun.transform.rotation);
+            }
         }
     }
 }

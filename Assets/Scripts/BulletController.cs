@@ -1,27 +1,44 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class BulletController : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private float destroyTime;
+
     private GameObject player;
+
     // private float _timeTmp;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        transform.rotation = player.transform.rotation;
-        transform.position = player.transform.position;
+        // player = GameObject.FindWithTag("Player");
+        // transform.rotation = player.transform.rotation;
+        // transform.position = player.transform.position;
+        Destroy(gameObject,destroyTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.
+        Move();
+    }
+
+    private void Move()
+    {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()
