@@ -11,6 +11,8 @@ public class BulletController : MonoBehaviour
     [SerializeField] private float destroyTime;
 
     private GameObject player;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip hitSFX;
 
     // private float _timeTmp;
     // Start is called before the first frame update
@@ -19,6 +21,7 @@ public class BulletController : MonoBehaviour
         // player = GameObject.FindWithTag("Player");
         // transform.rotation = player.transform.rotation;
         // transform.position = player.transform.position;
+        audioSource = FindObjectOfType<AudioSource>();
         Destroy(gameObject,destroyTime);
     }
 
@@ -37,6 +40,7 @@ public class BulletController : MonoBehaviour
     {
         if (other.CompareTag("Wall"))
         {
+            audioSource.PlayOneShot(hitSFX);
             Destroy(gameObject);
         }
     }
