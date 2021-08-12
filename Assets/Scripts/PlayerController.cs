@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody _rigidbody;
-
+    [SerializeField] private GameObject Bullet;
     public int Velocity = 5;
 
     void Start()
@@ -18,11 +18,14 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Rotate();
+        Fire();
     }
 
     private void Move()
     {
-        _rigidbody.velocity = (Input.GetAxis("Horizontal") * Vector3.right + Input.GetAxis("Vertical") * Vector3.forward) * Velocity;
+        _rigidbody.velocity =
+            (Input.GetAxis("Horizontal") * Vector3.right + Input.GetAxis("Vertical") * Vector3.forward).normalized *
+            Velocity;
     }
 
     private void Rotate()
@@ -34,6 +37,14 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 hitPoint = ray.GetPoint(distance);
             transform.LookAt(hitPoint);
+        }
+    }
+
+    private void Fire()
+    {
+        if (Input.GetButton("Fire1"))
+        {
+            Instantiate(Bullet);
         }
     }
 }
