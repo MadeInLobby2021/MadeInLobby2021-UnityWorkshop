@@ -113,6 +113,7 @@ MonoBehaviour:
   bullet: {fileID: 0}
   barrel: {fileID: 0}
   fireRate: 0
+  health: 0
 --- !u!114 &3996584736859831614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +129,7 @@ MonoBehaviour:
   bullet: {fileID: 0}
   barrel: {fileID: 0}
   fireRate: 0
+  health: 0
 --- !u!1 &3996584737016411997
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +145,7 @@ GameObject:
   - component: {fileID: 3996584737016411992}
   m_Layer: 0
   m_Name: Tower
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,7 +241,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 150893395194044850, guid: 1e5aeecb777350a41859bb365053c52f, type: 3}
   barrel: {fileID: 3996584737768239068}
-  fireRate: 1
+  fireRate: 3
+  health: 100
 --- !u!1 &3996584737768239069
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,10 +9,11 @@ public class BulletController : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float destroyTime;
-
+    [SerializeField] private float damage;
     private GameObject player;
     private AudioSource audioSource;
     [SerializeField] private AudioClip hitSFX;
+    [SerializeField] private AudioClip damageSFX;
 
     // private float _timeTmp;
     // Start is called before the first frame update
@@ -41,6 +42,12 @@ public class BulletController : MonoBehaviour
         if (other.CompareTag("Wall"))
         {
             audioSource.PlayOneShot(hitSFX);
+            Destroy(gameObject);
+        }
+        else if (other.CompareTag("Enemy"))
+        {
+            other.GetComponent<TowerController>().Damage(damage);
+            audioSource.PlayOneShot(damageSFX);
             Destroy(gameObject);
         }
     }

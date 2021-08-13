@@ -128,5 +128,6 @@ MonoBehaviour:
   hitSFX: {fileID: 8300000, guid: 536b7d22307c6894fbda50eee63efffc, type: 3}
   damageSFX: {fileID: 8300000, guid: 536b7d22307c6894fbda50eee63efffc, type: 3}
   velocity: 10
-  maxDegree: 10
+  maxDegree: 20
+  damage: 10
   destroyTime: 8

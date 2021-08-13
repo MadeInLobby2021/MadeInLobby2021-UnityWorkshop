@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class TowerController : MonoBehaviour
@@ -8,6 +9,7 @@ public class TowerController : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform barrel;
     [SerializeField] private float fireRate;
+    [SerializeField] private float health;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,16 @@ public class TowerController : MonoBehaviour
         {
             yield return new WaitForSeconds(fireRate);
             Instantiate(bullet, barrel.position, barrel.rotation);
+        }
+    }
+
+    public void Damage(float amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            //enemy is dead
+            Destroy(gameObject);
         }
     }
 }

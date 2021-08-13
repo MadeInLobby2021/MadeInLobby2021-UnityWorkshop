@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject RightGun;
     [SerializeField] private GameObject LeftGun;
     [SerializeField] private int Velocity = 5;
-    [SerializeField] private float GunCoolingTime;
+    [SerializeField] private float gunCoolingTime;
+    [SerializeField] private float health;
     private float lastFireTimeRight;
     private float lastFireTimeLeft;
     [SerializeField] private Animator animatorRight;
@@ -64,18 +65,27 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
-        if (Input.GetButton("Fire1") & Time.time > lastFireTimeLeft + GunCoolingTime)
+        if (Input.GetButton("Fire1") & Time.time > lastFireTimeLeft + gunCoolingTime)
         {
             lastFireTimeLeft = Time.time;
             Instantiate(Bullet, LeftGun.transform.position, LeftGun.transform.rotation);
             animatorLeft.SetBool("fire", true);
         }
 
-        if (Input.GetButton("Fire2") & Time.time > lastFireTimeRight + GunCoolingTime)
+        if (Input.GetButton("Fire2") & Time.time > lastFireTimeRight + gunCoolingTime)
         {
             lastFireTimeRight = Time.time;
             Instantiate(Bullet, RightGun.transform.position, RightGun.transform.rotation);
             animatorRight.SetBool("fire", true);
+        }
+    }
+    public void Damage(float amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            //player is dead
+            Destroy(gameObject);
         }
     }
 }

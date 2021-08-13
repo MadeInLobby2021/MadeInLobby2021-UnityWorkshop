@@ -8,6 +8,7 @@ public class EnemyBulletController : MonoBehaviour
     [SerializeField] private AudioClip damageSFX;
     [SerializeField] private float velocity;
     [SerializeField] private float maxDegree;
+    [SerializeField] private float damage;
     private AudioSource audioSource;
     private GameObject player;
 
@@ -40,7 +41,7 @@ public class EnemyBulletController : MonoBehaviour
         }
         else if (other.CompareTag("Player"))
         {
-            //todo damage player
+            player.GetComponent<PlayerController>().Damage(damage);
             audioSource.PlayOneShot(damageSFX);
             Destroy(gameObject);
         }
