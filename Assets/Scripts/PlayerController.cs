@@ -11,25 +11,43 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject LeftGun;
     [SerializeField] private int Velocity = 5;
     [SerializeField] private float GunCoolingTime;
-    private float lastFireTime;
+    private float lastFireTimeRight;
+    private float lastFireTimeLeft;
+    [SerializeField] private Animator animatorRight;
+    [SerializeField] private Animator animatorLeft;
+    private Animator animator;
+
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+        ResetFireAnimation();
         Move();
         Rotate();
         Fire();
     }
 
+    private void ResetFireAnimation()
+    {
+        if (Time.time > lastFireTimeLeft + 0.1)
+        {
+            animatorLeft.SetBool("fire", false);
+        }
+
+        if (Time.time > lastFireTimeRight + 0.1)
+            animatorRight.SetBool("fire", false);
+    }
+
     private void Move()
     {
         _rigidbody.velocity =
-            (Input.GetAxis("Horizontal") * Vector3.right + Input.GetAxis("Vertical") * Vector3.forward).normalized *
-            Velocity;
+            (Input.GetAxis("Vertical") * transform.forward) * Velocity;
+        animator.SetFloat("Speed", _rigidbody.velocity.magnitude);
     }
 
     private void Rotate()
@@ -46,18 +64,18 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
-        if (Time.time > lastFireTime + GunCoolingTime)
+        if (Input.GetButton("Fire1") & Time.time > lastFireTimeLeft + GunCoolingTime)
         {
-            lastFireTime = Time.time;
-            if (Input.GetButton("Fire1"))
-            {
-                Instantiate(Bullet, LeftGun.transform.position, LeftGun.transform.rotation);
-            }
+            lastFireTimeLeft = Time.time;
+            Instantiate(Bullet, LeftGun.transform.position, LeftGun.transform.rotation);
+            animatorLeft.SetBool("fire", true);
+        }
 
-            if (Input.GetButton("Fire2"))
-            {
-                Instantiate(Bullet, RightGun.transform.position, RightGun.transform.rotation);
-            }
+        if (Input.GetButton("Fire2") & Time.time > lastFireTimeRight + GunCoolingTime)
+        {
+            lastFireTimeRight = Time.time;
+            Instantiate(Bullet, RightGun.transform.position, RightGun.transform.rotation);
+            animatorRight.SetBool("fire", true);
         }
     }
 }

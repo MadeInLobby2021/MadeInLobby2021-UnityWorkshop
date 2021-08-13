@@ -22,7 +22,7 @@ public class BulletController : MonoBehaviour
         // transform.rotation = player.transform.rotation;
         // transform.position = player.transform.position;
         audioSource = FindObjectOfType<AudioSource>();
-        Destroy(gameObject,destroyTime);
+        Destroy(gameObject, destroyTime);
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class BulletController : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Wall"))
         {
