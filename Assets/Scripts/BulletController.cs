@@ -56,6 +56,7 @@ public class BulletController : MonoBehaviour
     {
         // Debug.Log(Time.time - _timeTmp);
         // _timeTmp = Time.time;
-        // transform.Translate(Vector3.forward * speed);
+        // transform.Translate(Vector3.
+        // forward * speed);
     }
 }
