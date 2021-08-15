@@ -42,6 +42,7 @@ public class TowerController : MonoBehaviour
     public void Damage(float amount)
     {
         health -= amount;
+        ScoreSystem.Instance.IncreaseScore(10);
         if (health <= 0)
         {
             //enemy is dead

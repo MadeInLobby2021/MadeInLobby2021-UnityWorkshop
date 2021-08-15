@@ -114,6 +114,7 @@ MonoBehaviour:
   damage: 3
   hitSFX: {fileID: 8300000, guid: 536b7d22307c6894fbda50eee63efffc, type: 3}
   damageSFX: {fileID: 8300000, guid: 536b7d22307c6894fbda50eee63efffc, type: 3}
+  data: {fileID: 11400000, guid: 55b3bd1c589ea6048a622a0916b5de8c, type: 2}
 --- !u!54 &734140648087794821
 Rigidbody:
   m_ObjectHideFlags: 0
